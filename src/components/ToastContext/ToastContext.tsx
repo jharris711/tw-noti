@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
 import { Toast, ToastContextProps } from '../../types/Toast';
+import { Theme } from '../../types/Theme';
+import useXY from '../../hooks/useXY';
 
 export const ToastContext = React.createContext<ToastContextProps>({
   theme: defaultTheme,
@@ -17,6 +19,8 @@ export const ToastContext = React.createContext<ToastContextProps>({
 interface ProviderProps {
   children: React.ReactNode;
   maxToasts?: number;
+  positionX?: string;
+  positionY?: string;
   persist?: boolean;
   timeout?: number;
 }
@@ -25,10 +29,13 @@ const ToastProvider = ({
   children,
   maxToasts = 3,
   persist = false,
+  positionX,
+  positionY,
   timeout = 3000,
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const [currentTheme] = useState(defaultTheme);
+  const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme);
+  useXY({ x: positionX, y: positionY, theme: currentTheme, setCurrentTheme });
 
   const enqueueToast = ({
     content,

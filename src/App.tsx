@@ -4,8 +4,7 @@ import TestTheToast from './components/TestTheToast';
 const App = () => {
   return (
     <>
-      <h1 className='text-3xl text-white'>Toast Library</h1>
-      <ToastProvider persist={false}>
+      <ToastProvider persist={false} positionX='right-16' positionY='top-12'>
         <TestTheToast />
       </ToastProvider>
     </>

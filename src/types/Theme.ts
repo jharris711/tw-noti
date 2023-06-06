@@ -34,53 +34,25 @@ export interface ContainerTheme {
   zIndex: string;
 }
 
+export interface IconThemeType {
+  altText: string;
+  text: {
+    dark: string;
+    light: string;
+  };
+  bg: {
+    dark: string;
+    light: string;
+  };
+}
+
 export interface IconTheme {
   h: string;
   w: string;
-  error: {
-    altText: string;
-    text: {
-      dark: string;
-      light: string;
-    };
-    bg: {
-      dark: string;
-      light: string;
-    };
-  };
-  info: {
-    altText: string;
-    text: {
-      dark: string;
-      light: string;
-    };
-    bg: {
-      dark: string;
-      light: string;
-    };
-  };
-  success: {
-    altText: string;
-    text: {
-      dark: string;
-      light: string;
-    };
-    bg: {
-      dark: string;
-      light: string;
-    };
-  };
-  warning: {
-    altText: string;
-    text: {
-      dark: string;
-      light: string;
-    };
-    bg: {
-      dark: string;
-      light: string;
-    };
-  };
+  error: IconThemeType;
+  info: IconThemeType;
+  success: IconThemeType;
+  warning: IconThemeType;
 }
 
 export interface LayoutTheme {
