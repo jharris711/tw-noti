@@ -4,14 +4,6 @@
 
 A simple way to set up Toast notifications in your React projects when you are using Tailwind CSS.
 
-<iframe  
-    id="inlineFrameExample"
-    title="Inline Frame Example"
-    width="100%"
-    height="250" 
-    src="https://stackblitz.com/edit/tw-noti-demo?embed=1&file=src%2FContent.jsx">
-</iframe>
-
 ## Installation
 
 _Make sure you have TailwindCSS setup in your project_
