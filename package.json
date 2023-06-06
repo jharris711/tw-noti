@@ -14,6 +14,22 @@
       "require": "./dist/tw-noti.umd.cjs"
     }
   },
+  "keywords": [
+    "toast notifications",
+    "notifications",
+    "toast",
+    "react",
+    "react component",
+    "react notifications",
+    "react toast",
+    "vite",
+    "vite plugin",
+    "tailwindcss",
+    "tailwind css",
+    "tailwind",
+    "typescript",
+    "notification system"
+  ],
   "homepage": "https://github.com/jharris711/tw-noti#readme",
   "repository": {
     "repository": {
