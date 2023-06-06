@@ -14,6 +14,18 @@
       "require": "./dist/tw-noti.umd.cjs"
     }
   },
+  "homepage": "https://github.com/jharris711/tw-noti#readme",
+  "repository": {
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jharris711/tw-noti.git"
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/jharris711/tw-noti/issues",
+    "email": "josh@jsharris.dev"
+  },
+  "license": "ISC",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

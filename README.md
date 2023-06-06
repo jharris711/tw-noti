@@ -12,7 +12,7 @@ _Make sure you have TailwindCSS setup in your project_
 
 ## Usage
 
-- Import the `ToastProvider` and use it to wrap you application:
+- Import the `ToastProvider` and use it to wrap your application:
 
 ```javascript
 import { ToastProvider } from 'tw-noti';
@@ -21,7 +21,7 @@ export default function App() {
   return (
     <>
       <ToastProvider maxToasts={3} timeout={3000}>
-        <Content />
+        <Child />
       </ToastProvider>
     </>
   );
