@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
 import { Toast, ToastContextProps } from '../../types/Toast';
@@ -29,8 +29,6 @@ const ToastProvider = ({
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [currentTheme] = useState(defaultTheme);
-
-  useEffect(() => console.log('Context update:', toasts), [toasts]);
 
   const enqueueToast = ({
     content,
