@@ -14,14 +14,16 @@ const useXY = ({
 }) => {
   useEffect(() => {
     if (!x) return;
-    theme.container.x = x;
-    setCurrentTheme(theme);
+    const temp = theme;
+    temp.container.x = x;
+    setCurrentTheme(temp);
   }, [x, theme, setCurrentTheme]);
 
   useEffect(() => {
     if (!y) return;
-    theme.container.y = y;
-    setCurrentTheme(theme);
+    const temp = theme;
+    temp.container.y = y;
+    setCurrentTheme(temp);
   }, [y, theme, setCurrentTheme]);
 };
 

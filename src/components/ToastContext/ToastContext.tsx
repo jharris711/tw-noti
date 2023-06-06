@@ -34,8 +34,26 @@ const ToastProvider = ({
   timeout = 3000,
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const [queue, setQueue] = useState<Toast[]>([]);
   const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme);
   useXY({ x: positionX, y: positionY, theme: currentTheme, setCurrentTheme });
+
+  useEffect(() => {
+    if (queue.length > 0 && toasts.length < maxToasts) {
+      const [nextToast, ...remainingQueue] = queue;
+      setToasts((prevToasts) => [...prevToasts, nextToast]);
+      setQueue(remainingQueue);
+
+      if (timeout && !persist) {
+        setTimeout(() => {
+          dequeueToast(nextToast.id);
+        }, timeout);
+      }
+    }
+
+    console.log('toasts', toasts);
+    console.log('queue', queue);
+  }, [queue, toasts, maxToasts, persist, timeout]);
 
   const enqueueToast = ({
     content,
@@ -50,16 +68,16 @@ const ToastProvider = ({
       type,
     };
 
-    if (maxToasts && toasts.length >= maxToasts) {
-      setToasts((prevToasts) => prevToasts.slice(1));
-    }
+    if (toasts.length >= maxToasts) {
+      setQueue((prevQueue) => [...prevQueue, newToast]);
+    } else {
+      setToasts((prevToasts) => [...prevToasts, newToast]);
 
-    setToasts((prevToasts) => [...prevToasts, newToast]);
-
-    if (timeout && !persist) {
-      setTimeout(() => {
-        dequeueToast(newToast.id);
-      }, timeout);
+      if (timeout && !persist) {
+        setTimeout(() => {
+          dequeueToast(newToast.id);
+        }, timeout);
+      }
     }
   };
 
