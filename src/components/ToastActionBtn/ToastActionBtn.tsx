@@ -28,7 +28,7 @@ const ToastActionBtn = ({ theme, type, onClick }: Props) => {
     `p-1.5`,
     `inline-flex`,
   ];
-  console.log(classes);
+
   return (
     <button
       type='button'
