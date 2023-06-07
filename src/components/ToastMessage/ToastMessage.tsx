@@ -1,13 +1,11 @@
-import { MessageTheme } from '../../types/Theme';
+import { Theme } from '../../types/Theme';
 
 interface Props extends React.PropsWithChildren {
-  theme: MessageTheme;
+  theme: Theme['message'];
 }
 
 const ToastMessage = ({ children, theme }: Props) => {
-  const classes = ['ml-3', theme.textSize, theme.fontStyle];
-
-  return <div className={classes.join(' ')}>{children}</div>;
+  return <div className={theme.classes}>{children}</div>;
 };
 
 export default ToastMessage;

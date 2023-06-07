@@ -1,13 +1,6 @@
-import { LayoutTheme } from '../types/Theme';
+import { Theme } from '../types/Theme';
 
-export const layout: LayoutTheme = {
-  shadow: 'shadow',
-  bg: {
-    dark: 'dark:bg-gray-800',
-    light: 'bg-white',
-  },
-  text: {
-    dark: 'dark:text-gray-400',
-    light: 'text-gray-500',
-  },
+export const layout: Theme['layout'] = {
+  classes:
+    'animate-fade-down animate-ease-in-out flex items-center w-full max-w-xs p-4 rounded-lg shadow dark:bg-gray-800 bg-white dark:text-gray-400 text-gray-500',
 };

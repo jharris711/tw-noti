@@ -3,9 +3,10 @@ import CloseIcon from '../../svgIcons/CloseIcon';
 import FireIcon from '../../svgIcons/FireIcon';
 import InfoCircleIcon from '../../svgIcons/InfoCircleIcon';
 import WarningIcon from '../../svgIcons/WarningIcon';
+import { Theme } from '../../types/Theme';
 
 interface Props {
-  theme: Record<string, any>;
+  theme: Theme['icon'];
   type: string;
 }
 
@@ -15,22 +16,8 @@ const ToastIcon = ({ theme, type }: Props) => {
   const success = type === 'success';
   const warning = type === 'warning';
 
-  const classes = [
-    `inline-flex`,
-    `items-center`,
-    `justify-center`,
-    `flex-shrink-0`,
-    `rounded-lg`,
-    `${theme.w}`,
-    `${theme.h}`,
-    `${theme[type].bg.dark}`,
-    `${theme[type].bg.light}`,
-    `${theme[type].text.dark}`,
-    `${theme[type].text.light}`,
-  ];
-
   return (
-    <div className={classes.join(' ')}>
+    <div className={theme.classes[type].classes}>
       {error ? (
         <CloseIcon className='w-5 h-5' />
       ) : info ? (
@@ -42,7 +29,7 @@ const ToastIcon = ({ theme, type }: Props) => {
       ) : (
         <FireIcon className='w-5 h-5' />
       )}
-      <span className='sr-only'>{theme[type].altText}</span>
+      <span className='sr-only'>{theme.classes[type].altText}</span>
     </div>
   );
 };

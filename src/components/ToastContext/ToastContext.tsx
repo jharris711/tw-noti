@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
+import useTheme from '../../hooks/useTheme';
 import { Toast, ToastContextProps } from '../../types/Toast';
+import { Theme } from '../../types/Theme';
 
 export const ToastContext = React.createContext<ToastContextProps>({
   theme: defaultTheme,
@@ -17,6 +19,11 @@ export const ToastContext = React.createContext<ToastContextProps>({
 interface ProviderProps {
   children: React.ReactNode;
   maxToasts?: number;
+  buttonClasses?: Theme['button']['classes'];
+  containerClasses?: Theme['container']['classes'];
+  iconClasses?: Theme['icon']['classes'];
+  layoutClasses?: Theme['layout']['classes'];
+  messageClasses?: Theme['message']['classes'];
   persist?: boolean;
   timeout?: number;
 }
@@ -25,10 +32,36 @@ const ToastProvider = ({
   children,
   maxToasts = 3,
   persist = false,
+  buttonClasses,
+  containerClasses,
+  iconClasses,
+  layoutClasses,
+  messageClasses,
   timeout = 3000,
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
-  const [currentTheme] = useState(defaultTheme);
+  const [queue, setQueue] = useState<Toast[]>([]);
+  const { currentTheme } = useTheme({
+    buttonClasses,
+    containerClasses,
+    iconClasses,
+    layoutClasses,
+    messageClasses,
+  });
+
+  useEffect(() => {
+    if (queue.length > 0 && toasts.length < maxToasts) {
+      const [nextToast, ...remainingQueue] = queue;
+      setToasts((prevToasts) => [...prevToasts, nextToast]);
+      setQueue(remainingQueue);
+
+      if (timeout && !persist) {
+        setTimeout(() => {
+          dequeueToast(nextToast.id);
+        }, timeout);
+      }
+    }
+  }, [queue, toasts, maxToasts, persist, timeout]);
 
   const enqueueToast = ({
     content,
@@ -43,16 +76,16 @@ const ToastProvider = ({
       type,
     };
 
-    if (maxToasts && toasts.length >= maxToasts) {
-      setToasts((prevToasts) => prevToasts.slice(1));
-    }
+    if (toasts.length >= maxToasts) {
+      setQueue((prevQueue) => [...prevQueue, newToast]);
+    } else {
+      setToasts((prevToasts) => [...prevToasts, newToast]);
 
-    setToasts((prevToasts) => [...prevToasts, newToast]);
-
-    if (timeout && !persist) {
-      setTimeout(() => {
-        dequeueToast(newToast.id);
-      }, timeout);
+      if (timeout && !persist) {
+        setTimeout(() => {
+          dequeueToast(newToast.id);
+        }, timeout);
+      }
     }
   };
 
