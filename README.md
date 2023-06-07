@@ -4,6 +4,8 @@
 
 A simple way to set up Toast notifications in your React projects when you are using Tailwind CSS.
 
+[DEMO on StackBlitz](https://stackblitz.com/edit/tw-noti-demo?file=src%2FApp.js)
+
 # Installation
 
 _Make sure you have TailwindCSS setup in your project_
