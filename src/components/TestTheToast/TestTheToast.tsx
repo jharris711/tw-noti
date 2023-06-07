@@ -4,7 +4,7 @@ const TestTheToast = () => {
   const { enqueueToast } = useToast();
 
   const handleClick = () => {
-    enqueueToast({ content: 'This is a notification', type: 'error' });
+    enqueueToast({ content: 'This is a notification', type: 'info' });
   };
 
   return (

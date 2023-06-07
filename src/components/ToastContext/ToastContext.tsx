@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
+import useTheme from '../../hooks/useTheme';
 import { Toast, ToastContextProps } from '../../types/Toast';
 import { Theme } from '../../types/Theme';
-import useXY from '../../hooks/useXY';
 
 export const ToastContext = React.createContext<ToastContextProps>({
   theme: defaultTheme,
@@ -19,8 +19,11 @@ export const ToastContext = React.createContext<ToastContextProps>({
 interface ProviderProps {
   children: React.ReactNode;
   maxToasts?: number;
-  positionX?: string;
-  positionY?: string;
+  buttonClasses?: Theme['button']['classes'];
+  containerClasses?: Theme['container']['classes'];
+  iconClasses?: Theme['icon']['classes'];
+  layoutClasses?: Theme['layout']['classes'];
+  messageClasses?: Theme['message']['classes'];
   persist?: boolean;
   timeout?: number;
 }
@@ -29,14 +32,22 @@ const ToastProvider = ({
   children,
   maxToasts = 3,
   persist = false,
-  positionX,
-  positionY,
+  buttonClasses,
+  containerClasses,
+  iconClasses,
+  layoutClasses,
+  messageClasses,
   timeout = 3000,
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [queue, setQueue] = useState<Toast[]>([]);
-  const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme);
-  useXY({ x: positionX, y: positionY, theme: currentTheme, setCurrentTheme });
+  const { currentTheme } = useTheme({
+    buttonClasses,
+    containerClasses,
+    iconClasses,
+    layoutClasses,
+    messageClasses,
+  });
 
   useEffect(() => {
     if (queue.length > 0 && toasts.length < maxToasts) {
@@ -50,9 +61,6 @@ const ToastProvider = ({
         }, timeout);
       }
     }
-
-    console.log('toasts', toasts);
-    console.log('queue', queue);
   }, [queue, toasts, maxToasts, persist, timeout]);
 
   const enqueueToast = ({

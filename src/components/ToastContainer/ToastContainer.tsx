@@ -1,13 +1,11 @@
-import { ContainerTheme } from '../../types/Theme';
+import { Theme } from '../../types/Theme';
 
 interface Props extends React.PropsWithChildren {
-  theme: ContainerTheme;
+  theme: Theme['container'];
 }
 
 const ToastContainer = ({ children, theme }: Props) => {
-  const classes = [theme.x, theme.y, theme.position, theme.zIndex];
-
-  return <div className={classes.join(' ')}>{children}</div>;
+  return <div className={theme.classes}>{children}</div>;
 };
 
 export default ToastContainer;

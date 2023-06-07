@@ -4,7 +4,7 @@ import TestTheToast from './components/TestTheToast';
 const App = () => {
   return (
     <>
-      <ToastProvider persist={false} positionX='right-12' positionY='top-12'>
+      <ToastProvider containerClasses='right-12 bottom-12'>
         <TestTheToast />
       </ToastProvider>
     </>

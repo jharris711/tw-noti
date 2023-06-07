@@ -1,27 +1,14 @@
-import { LayoutTheme } from '../../types/Theme';
+import { PropsWithChildren } from 'react';
+import { Theme } from '../../types/Theme';
 
-interface Props extends React.PropsWithChildren {
-  theme: LayoutTheme;
+interface Props extends PropsWithChildren {
+  theme: Theme['layout'];
   type: string;
 }
 
 const ToastLayout = ({ children, theme, type }: Props) => {
-  const classes = [
-    'flex',
-    'items-center',
-    'w-full',
-    'max-w-xs',
-    'p-4',
-    'rounded-lg',
-    theme.shadow,
-    theme.bg.dark,
-    theme.bg.light,
-    theme.text.dark,
-    theme.text.light,
-  ];
-
   return (
-    <div id={`toast-${type}`} className={classes.join(' ')} role='alert'>
+    <div id={`toast-${type}`} className={theme.classes} role='alert'>
       {children}
     </div>
   );

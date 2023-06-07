@@ -10,9 +10,12 @@ const Toaster = () => {
     dequeueToast(id);
   };
 
+  // Sort the toasts array in descending order based on created-at time (toast.id)
+  const sortedToasts = toasts.sort((a, b) => b.id - a.id);
+
   return (
     <ToastContainer theme={defaultTheme.container}>
-      {toasts.map((toast) => (
+      {sortedToasts.map((toast) => (
         <Toast
           key={toast.id}
           content={toast.content}
