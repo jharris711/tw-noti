@@ -1,5 +1,9 @@
 # tw-noti
 
+[![npm version](https://img.shields.io/npm/v/tw-noti.svg?label=version)](https://www.npmjs.com/package/tw-noti)
+[![npm downloads](https://img.shields.io/npm/dm/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
+[![package license](https://img.shields.io/npm/l/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
+
 # TailwindCSS Toast Notifications and Provider for React Applications
 
 A simple way to set up Toast notifications in your React projects when you are using Tailwind CSS.
