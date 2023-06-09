@@ -29,6 +29,7 @@ export default function App() {
       <ToastProvider
         maxToasts={3}
         timeout={3000}
+        reverseStackOrder
         containerClasses='right-12 bottom-12'
       >
         <Child />
@@ -76,10 +77,11 @@ The `ToastProvider` houses the `ToastContainer` and the `Toaster`.maxToasts
 | Prop               | type                     | default                                                                                                                                                                                                                                       | description                                                                                  |
 | ------------------ | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `maxToasts`        | number                   | 3                                                                                                                                                                                                                                             | Number of toasts that can be displayed at one time                                           |
-| `persist`          | boolean                  | false                                                                                                                                                                                                                                         | If false, toasts will be dismissed after timeout                                             |
+| `reverseStackOrder` | boolean | false | If `true`, reverses the order in which Toasts are rendered |
+| `persist`          | boolean                  | false                                                                                                                                                                                                                                         | If `false`, toasts will be dismissed after timeout                                             |
 | `timeout`          | number                   | 3000                                                                                                                                                                                                                                          | If `persist` set to `false`, amount of time (ms) Toasts wait before automatically dismissing |
 | `buttonClasses`    | string                   | 'h-8 w-8 ml-auto -mx-1.5 -my-1.5 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 inline-flex dark:text-gray-500 text-gray-400 dark:hover:text-white hover:text-gray-900 dark:bg-gray-800 bg-white dark:hover:bg-gray-700 hover:bg-gray-100' | Accepts Tailwind classes to override default Toast action button styles                      |
-| `containerClasses` | string                   | 'right-16 bottom-16 fixed z-50'                                                                                                                                                                                                               | Accepts Tailwind classes to override default Toast container styles                          |
+| `containerClasses` | string                   | 'left-16 bottom-16 fixed z-50'                                                                                                                                                                                                               | Accepts Tailwind classes to override default Toast container styles                          |
 | `iconClasses`      | Theme['icon']['classes'] | See Theme                                                                                                                                                                                                                                     | Accepts Tailwind classes to override default Toast icon styles                               |
 | `layoutClasses`    | string                   | 'animate-fade-down animate-ease-in-out flex items-center w-full max-w-xs p-4 rounded-lg shadow dark:bg-gray-800 bg-white dark:text-gray-400 text-gray-500'                                                                                    | Accepts Tailwind classes to override default Toast layout styles                             |
 | `messageClasses`   | string                   | 'ml-3 text-sm font-normal'                                                                                                                                                                                                                    | Accepts Tailwind classes to override default Toast message styles                            |
@@ -112,6 +114,7 @@ Returns the ToastContextProps associated with the ToastContext.
 
 ```javascript
 interface ToastContextProps {
+  reverseStackOrder: boolean;
   theme: Theme;
   toasts: Toast[];
   enqueueToast: ({ content, type }: { content: string; type: string }) => void;
