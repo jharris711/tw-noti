@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
 import useTheme from '../../hooks/useTheme';
@@ -19,6 +20,7 @@ export const ToastContext = React.createContext<ToastContextProps>({
 
 interface ProviderProps {
   children: React.ReactNode;
+  domRoot?: Element | DocumentFragment;
   maxToasts?: number;
   persist?: boolean;
   timeout?: number;
@@ -30,14 +32,9 @@ interface ProviderProps {
   messageClasses?: Theme['message']['classes'];
 }
 
-// Sort the toasts array in descending order based on created-at time (toast.id)
-const sortToasts = (toasts: Toast[]) => {
-  const sorted = toasts;
-  return sorted.sort((a, b) => b.id - a.id);
-};
-
 const ToastProvider = ({
   children,
+  domRoot,
   maxToasts = 3,
   persist = false,
   reverseStackOrder = false,
@@ -112,8 +109,8 @@ const ToastProvider = ({
 
   return (
     <ToastContext.Provider value={toastContextValue}>
-      <Toaster />
       {children}
+      {domRoot ? createPortal(<Toaster />, domRoot) : <Toaster />}
     </ToastContext.Provider>
   );
 };
