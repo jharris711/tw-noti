@@ -12,7 +12,7 @@ function filterClasses(values: string[], classString: string): string {
   // Remove classes that match the opposite pattern
   const filteredClasses = classString.replace(
     oppositePattern,
-    (match, className) => {
+    (_, className) => {
       const [oppositeValue] = className.split('-');
       return values.includes(oppositeValue) ? className : '';
     }
