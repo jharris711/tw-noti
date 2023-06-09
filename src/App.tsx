@@ -5,8 +5,9 @@ const App = () => {
   return (
     <>
       <ToastProvider
-        containerClasses='right-12 bottom-12'
+        containerClasses='right-12 top-10'
         messageClasses='dark:text-white font-extrabold'
+        reverseStackOrder
       >
         <TestTheToast />
       </ToastProvider>

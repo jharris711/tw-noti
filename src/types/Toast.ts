@@ -7,6 +7,7 @@ export interface Toast {
 }
 
 export interface ToastContextProps {
+  reverseStackOrder: boolean;
   theme: Theme;
   toasts: Toast[];
   enqueueToast: ({ content, type }: { content: string; type: string }) => void;
