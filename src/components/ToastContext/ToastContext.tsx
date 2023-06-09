@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { defaultTheme } from '../../theme/defaultTheme';
 import Toaster from '../Toaster';
 import useTheme from '../../hooks/useTheme';
@@ -6,6 +7,7 @@ import { Toast, ToastContextProps } from '../../types/Toast';
 import { Theme } from '../../types/Theme';
 
 export const ToastContext = React.createContext<ToastContextProps>({
+  reverseStackOrder: false,
   theme: defaultTheme,
   toasts: [],
   enqueueToast: () => {
@@ -18,26 +20,30 @@ export const ToastContext = React.createContext<ToastContextProps>({
 
 interface ProviderProps {
   children: React.ReactNode;
+  domRoot?: Element | DocumentFragment;
   maxToasts?: number;
+  persist?: boolean;
+  timeout?: number;
+  reverseStackOrder?: boolean;
   buttonClasses?: Theme['button']['classes'];
   containerClasses?: Theme['container']['classes'];
   iconClasses?: Theme['icon']['classes'];
   layoutClasses?: Theme['layout']['classes'];
   messageClasses?: Theme['message']['classes'];
-  persist?: boolean;
-  timeout?: number;
 }
 
 const ToastProvider = ({
   children,
+  domRoot,
   maxToasts = 3,
   persist = false,
+  reverseStackOrder = false,
+  timeout = 3000,
   buttonClasses,
   containerClasses,
   iconClasses,
   layoutClasses,
   messageClasses,
-  timeout = 3000,
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [queue, setQueue] = useState<Toast[]>([]);
@@ -61,7 +67,7 @@ const ToastProvider = ({
         }, timeout);
       }
     }
-  }, [queue, toasts, maxToasts, persist, timeout]);
+  }, [queue, toasts, maxToasts, persist, timeout, reverseStackOrder]);
 
   const enqueueToast = ({
     content,
@@ -94,6 +100,7 @@ const ToastProvider = ({
   };
 
   const toastContextValue: ToastContextProps = {
+    reverseStackOrder: reverseStackOrder,
     theme: currentTheme,
     toasts,
     enqueueToast,
@@ -102,8 +109,8 @@ const ToastProvider = ({
 
   return (
     <ToastContext.Provider value={toastContextValue}>
-      <Toaster />
       {children}
+      {domRoot ? createPortal(<Toaster />, domRoot) : <Toaster />}
     </ToastContext.Provider>
   );
 };
