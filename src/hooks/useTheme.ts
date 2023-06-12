@@ -2,31 +2,6 @@ import { useState, useEffect } from 'react';
 import { defaultTheme } from '../theme/defaultTheme';
 import { Theme } from '../types/Theme';
 
-function filterClasses(values: string[], classString: string): string {
-  // Create a regular expression pattern to match the opposite values
-  const oppositePattern = new RegExp(
-    `(\\b(?:${values.join('|')})-\\d+\\b)`,
-    'g'
-  );
-
-  // Remove classes that match the opposite pattern
-  const filteredClasses = classString.replace(
-    oppositePattern,
-    (_, className) => {
-      const [oppositeValue] = className.split('-');
-      return values.includes(oppositeValue) ? className : '';
-    }
-  );
-
-  // Trim and remove extra spaces between classes
-  const trimmedClasses = filteredClasses.replace(/\s+/g, ' ').trim();
-
-  return trimmedClasses;
-}
-
-const filterDuplicateValues = (inputString: string): string =>
-  [...new Set(inputString.split(' '))].join(' ');
-
 interface Props {
   buttonClasses?: Theme['button']['classes'];
   containerClasses?: Theme['container']['classes'];
@@ -53,7 +28,9 @@ const useTheme = ({
       !messageClasses
     )
       return;
+
     const temp = currentTheme;
+
     if (buttonClasses)
       temp.button.classes = temp.button.classes + ' ' + buttonClasses;
 
@@ -73,10 +50,13 @@ const useTheme = ({
           temp.icon.classes[key].classes + ' ' + iconClasses[key].classes;
       });
     }
+
     if (layoutClasses)
       temp.layout.classes = temp.layout.classes + ' ' + layoutClasses;
+
     if (messageClasses)
       temp.message.classes = temp.message.classes + ' ' + messageClasses;
+
     setCurrentTheme(temp);
   }, [
     buttonClasses,
@@ -89,5 +69,26 @@ const useTheme = ({
 
   return { currentTheme, setCurrentTheme };
 };
+
+function filterClasses(values: string[], classString: string): string {
+  if (values.includes('right')) {
+    classString = classString.replace(/left-\w+\s*/g, '');
+  }
+  if (values.includes('left')) {
+    classString = classString.replace(/right-\w+\s*/g, '');
+  }
+  if (values.includes('top')) {
+    classString = classString.replace(/bottom-\w+\s*/g, '');
+  }
+  if (values.includes('bottom')) {
+    classString = classString.replace(/top-\w+\s*/g, '');
+  }
+
+  return classString.trim();
+}
+
+function filterDuplicateValues(inputString: string): string {
+  return [...new Set(inputString.split(' '))].join(' ');
+}
 
 export default useTheme;

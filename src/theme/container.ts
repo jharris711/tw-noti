@@ -1,5 +1,5 @@
 import { Theme } from '../types/Theme';
 
 export const container: Theme['container'] = {
-  classes: 'left-16 bottom-16 fixed z-50',
+  classes: 'absolute bottom-12 left-12',
 };
