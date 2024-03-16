@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { defaultTheme } from '../theme/defaultTheme';
 import { Theme } from '../types/Theme';
+import { ClassValue, clsx } from 'clsx'; // Added import statement
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 interface Props {
   buttonClasses?: Theme['button']['classes'];
@@ -15,80 +21,78 @@ const useTheme = ({
   containerClasses,
   iconClasses,
   layoutClasses,
-  messageClasses,
+  messageClasses
 }: Props) => {
   const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
-    if (
-      !buttonClasses &&
-      !containerClasses &&
-      !iconClasses &&
-      !layoutClasses &&
-      !messageClasses
-    )
-      return;
+    setCurrentTheme(() => {
+      const temp = currentTheme;
 
-    const temp = currentTheme;
+      if (buttonClasses)
+        temp.button.classes = cn(temp.button.classes, buttonClasses);
 
-    if (buttonClasses)
-      temp.button.classes = temp.button.classes + ' ' + buttonClasses;
+      if (containerClasses) {
+        temp.container.classes = cn(temp.container.classes, containerClasses);
+        const values = containerClasses
+          .split(' ')
+          .map((value) => value.split('-')[0] || '');
+        temp.container.classes = filterClasses(values, temp.container.classes);
+      }
 
-    if (containerClasses) {
-      temp.container.classes = temp.container.classes + ' ' + containerClasses;
-      const values = containerClasses
-        .split(' ')
-        .map((value) => value.split('-')[0] || '');
-      temp.container.classes = filterClasses(values, temp.container.classes);
-      temp.container.classes = filterDuplicateValues(temp.container.classes);
-    }
+      if (iconClasses) {
+        temp.icon.classes = Object.keys(iconClasses || {}).reduce(
+          (acc, key) => ({
+            ...acc,
+            [key]: {
+              ...acc[key],
+              altText: iconClasses[key].altText,
+              classes: cn(acc[key].classes, iconClasses[key].classes)
+            }
+          }),
+          temp.icon.classes
+        );
+      }
 
-    if (iconClasses) {
-      Object.keys(iconClasses).forEach((key) => {
-        temp.icon.classes[key].altText = iconClasses[key].altText;
-        temp.icon.classes[key].classes =
-          temp.icon.classes[key].classes + ' ' + iconClasses[key].classes;
-      });
-    }
+      if (layoutClasses)
+        temp.layout.classes = cn(temp.layout.classes, layoutClasses);
 
-    if (layoutClasses)
-      temp.layout.classes = temp.layout.classes + ' ' + layoutClasses;
-
-    if (messageClasses)
-      temp.message.classes = temp.message.classes + ' ' + messageClasses;
-
-    setCurrentTheme(temp);
+      if (messageClasses)
+        temp.message.classes = cn(temp.message.classes, messageClasses);
+      return temp;
+    });
   }, [
     buttonClasses,
     containerClasses,
     iconClasses,
     layoutClasses,
     messageClasses,
-    currentTheme,
+    currentTheme
   ]);
 
   return { currentTheme, setCurrentTheme };
 };
 
 function filterClasses(values: string[], classString: string): string {
-  if (values.includes('right')) {
-    classString = classString.replace(/left-\w+\s*/g, '');
-  }
-  if (values.includes('left')) {
-    classString = classString.replace(/right-\w+\s*/g, '');
-  }
-  if (values.includes('top')) {
-    classString = classString.replace(/bottom-\w+\s*/g, '');
-  }
-  if (values.includes('bottom')) {
-    classString = classString.replace(/top-\w+\s*/g, '');
-  }
+  // Map each direction to its opposite
+  const opposites: Record<string, string> = {
+    right: 'left',
+    left: 'right',
+    top: 'bottom',
+    bottom: 'top'
+  };
+
+  // Iterate over the opposites map
+  Object.entries(opposites).forEach(([key, value]) => {
+    if (values.includes(key)) {
+      // Create a dynamic regex based on the current key's opposite
+      const regex = new RegExp(`${value}-\\w+\\s*`, 'g');
+      // Replace occurrences of the opposite direction in the class string
+      classString = classString.replace(regex, '');
+    }
+  });
 
   return classString.trim();
-}
-
-function filterDuplicateValues(inputString: string): string {
-  return [...new Set(inputString.split(' '))].join(' ');
 }
 
 export default useTheme;
