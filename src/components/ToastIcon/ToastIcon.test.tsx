@@ -5,7 +5,7 @@ import { defaultTheme } from '@/theme/defaultTheme';
 
 import { ToastIcon } from './ToastIcon';
 
-describe('ToastIcon Component', () => {
+describe('Toast Icon Component', () => {
   test('should render the component', () => {
     render(<ToastIcon theme={defaultTheme.icon} type='info' />);
 

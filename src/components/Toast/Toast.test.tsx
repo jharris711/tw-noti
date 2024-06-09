@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import { Toast } from './Toast';
 
-describe('should render properly', () => {
+describe('Toast component', () => {
   test('should render the component', () => {
     const content = 'Test notification';
     const type = 'info';

@@ -10,7 +10,7 @@ vi.mock('../../hooks/useToast', () => ({
   })
 }));
 
-describe('should render properly', () => {
+describe('Example component', () => {
   test('should render the component', () => {
     render(<Example />);
 

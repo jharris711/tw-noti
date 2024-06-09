@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import { ToastContainer } from './ToastContainer';
 
-describe('should render properly', () => {
+describe('Toast container', () => {
   test('should render the component', () => {
     const theme = {
       classes: 'test'

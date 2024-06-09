@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import { ToastActionBtn } from './ToastActionBtn';
 
-describe('should render properly', () => {
+describe('Toast action button', () => {
   test('should render the component', () => {
     const theme = {
       classes: 'test'
