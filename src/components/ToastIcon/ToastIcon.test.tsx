@@ -36,4 +36,17 @@ describe('Toast Icon Component', () => {
       expect(srText).toHaveClass('sr-only');
     });
   });
+
+  test('should render the default icon for unknown type', () => {
+    render(<ToastIcon theme={defaultTheme.icon} type='' />);
+
+    const toastIcon = screen.getByTestId('toast-icon');
+    expect(toastIcon).toBeInTheDocument();
+
+    const defaultIcon = toastIcon.querySelector('svg');
+    expect(defaultIcon).toBeInTheDocument();
+
+    const srText = screen.getByText('Default Icon');
+    expect(srText).toHaveClass('sr-only');
+  });
 });

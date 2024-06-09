@@ -16,8 +16,10 @@ export function ToastIcon({ theme, type }: Props) {
   const success = type === 'success';
   const warning = type === 'warning';
 
+  const classes = theme.classes[type] ? theme.classes[type].classes : '';
+
   return (
-    <div className={theme.classes[type].classes} data-testid='toast-icon'>
+    <div className={classes} data-testid='toast-icon'>
       {error ? (
         <CloseIcon className='w-5 h-5' />
       ) : info ? (
@@ -29,7 +31,11 @@ export function ToastIcon({ theme, type }: Props) {
       ) : (
         <FireIcon className='w-5 h-5' />
       )}
-      <span className='sr-only'>{theme.classes[type].altText}</span>
+      <span className='sr-only'>
+        {theme.classes && theme.classes[type]
+          ? theme.classes[type].altText
+          : 'Default Icon'}
+      </span>
     </div>
   );
 }
