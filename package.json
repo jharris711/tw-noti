@@ -48,7 +48,9 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "test:staged": "vitest --run",
+    "prepare": "husky"
   },
   "peerDependencies": {
     "autoprefixer": "^10.4.14",
@@ -73,6 +75,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.5",
+    "husky": "^9.0.11",
     "jsdom": "^24.1.0",
     "path": "^0.12.7",
     "postcss": "^8.4.24",
