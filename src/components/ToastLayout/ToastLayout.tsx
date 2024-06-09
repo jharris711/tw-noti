@@ -13,5 +13,3 @@ export function ToastLayout({ children, theme, type }: Props) {
     </div>
   );
 }
-
-export default ToastLayout;
