@@ -4,8 +4,10 @@ interface Props extends React.PropsWithChildren {
   theme: Theme['container'];
 }
 
-const ToastContainer = ({ children, theme }: Props) => {
-  return <div className={theme.classes}>{children}</div>;
-};
-
-export default ToastContainer;
+export function ToastContainer({ children, theme }: Props) {
+  return (
+    <div data-testid='toast-container' className={theme.classes}>
+      {children}
+    </div>
+  );
+}
