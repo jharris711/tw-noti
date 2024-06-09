@@ -2,7 +2,7 @@ import ToastActionBtn from '../ToastActionBtn';
 import ToastIcon from '../ToastIcon';
 import ToastLayout from '../ToastLayout';
 import ToastMessage from '../ToastMessage';
-import { useToast } from '../../hooks/useToast';
+import useToast from '@/hooks/useToast';
 
 interface ToastProps {
   index: number;

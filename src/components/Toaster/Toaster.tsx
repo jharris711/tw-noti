@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import ToastComponent from '@/components/Toast';
-import { useToast } from '@/hooks/useToast';
+import useToast from '@/hooks/useToast';
 import { Toast } from '@/types/Toast';
 import { defaultTheme } from '@/theme/defaultTheme';
 

@@ -2,9 +2,9 @@ import { describe, expect, test } from 'vitest';
 import { renderHook } from '@testing-library/react';
 
 import { defaultTheme } from '@/theme/defaultTheme';
+import { Theme } from '@/types/Theme';
 
 import { useTheme, cn, filterClasses } from './useTheme';
-import { Theme } from '@/types/Theme';
 
 describe('useTheme hook', () => {
   test('should return the default theme', () => {

@@ -1,8 +1,10 @@
 import { describe, expect, test } from 'vitest';
+
+import ToastProvider from '@/components/ToastContext';
 import { renderHook } from '@testing-library/react';
-import { useToast } from './useToast';
-import { ToastProvider } from '@/components/ToastContext/ToastContext';
 import { ToastContextProps } from '@/types/Toast';
+
+import { useToast } from './useToast';
 
 describe('useToast hook', () => {
   test('should return context value when used within ToastProvider', () => {

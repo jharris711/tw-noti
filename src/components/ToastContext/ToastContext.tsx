@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 
 import useTheme from '@/hooks/useTheme';
 import { defaultTheme } from '@/theme/defaultTheme';
-import { Toast, ToastContextProps } from '@/types/Toast';
 import { Theme } from '@/types/Theme';
+import { Toast, ToastContextProps } from '@/types/Toast';
 
 import Toaster from '../Toaster';
 
