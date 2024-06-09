@@ -1,17 +1,8 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { describe, expect, test, vi } from 'vitest';
-import {
-  render,
-  renderHook,
-  screen,
-  act,
-  fireEvent
-} from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import { ToastProvider, ToastContext } from './ToastContext';
 import { defaultTheme } from '@/theme/defaultTheme';
-import { v4 as uuidv4 } from 'uuid';
-import useTheme from '@/hooks/useTheme';
-import { useToast } from '@/lib';
 
 vi.mock('uuid', () => ({
   v4: vi.fn().mockReturnValue('unique-id')
