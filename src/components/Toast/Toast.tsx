@@ -10,15 +10,16 @@ interface ToastProps {
   onClose?: () => void;
 }
 
-const Toast = ({ content, type, onClose }: ToastProps) => {
+export function Toast({ content, type, onClose }: ToastProps) {
   const { theme } = useToast();
-  return (
-    <ToastLayout theme={theme.layout} type={type}>
-      <ToastIcon theme={theme.icon} type={type} />
-      <ToastMessage theme={theme.message}>{content}</ToastMessage>
-      <ToastActionBtn theme={theme.button} type={type} onClick={onClose} />
-    </ToastLayout>
-  );
-};
 
-export default Toast;
+  return (
+    <div data-testid='toast'>
+      <ToastLayout theme={theme.layout} type={type}>
+        <ToastIcon theme={theme.icon} type={type} />
+        <ToastMessage theme={theme.message}>{content}</ToastMessage>
+        <ToastActionBtn theme={theme.button} type={type} onClick={onClose} />
+      </ToastLayout>
+    </div>
+  );
+}
