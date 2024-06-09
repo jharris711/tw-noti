@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { defaultTheme } from '../theme/defaultTheme';
-import { Theme } from '../types/Theme';
-import { ClassValue, clsx } from 'clsx'; // Added import statement
+import { defaultTheme } from '@/theme/defaultTheme';
+import { Theme } from '@/types/Theme';
+import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -16,7 +16,7 @@ interface Props {
   messageClasses?: Theme['message']['classes'];
 }
 
-const useTheme = ({
+export const useTheme = ({
   buttonClasses,
   containerClasses,
   iconClasses,
@@ -26,22 +26,37 @@ const useTheme = ({
   const [currentTheme, setCurrentTheme] = useState<Theme>(defaultTheme);
 
   useEffect(() => {
-    setCurrentTheme(() => {
-      const temp = currentTheme;
+    const handleUpdateTheme = (prevTheme: Theme) => {
+      const updatedTheme = { ...prevTheme };
 
-      if (buttonClasses)
-        temp.button.classes = cn(temp.button.classes, buttonClasses);
+      if (buttonClasses) {
+        updatedTheme.button.classes = cn(
+          prevTheme.button.classes,
+          buttonClasses
+        );
+      }
 
       if (containerClasses) {
-        temp.container.classes = cn(temp.container.classes, containerClasses);
-        const values = containerClasses
-          .split(' ')
-          .map((value) => value.split('-')[0] || '');
-        temp.container.classes = filterClasses(values, temp.container.classes);
+        updatedTheme.container.classes = cn(
+          prevTheme.container.classes,
+          containerClasses
+        );
+
+        const temp = [];
+        const values = containerClasses.split(' ');
+
+        for (const value in values) {
+          temp.push(value.split('-')[0] || '');
+        }
+
+        updatedTheme.container.classes = filterClasses(
+          values,
+          prevTheme.container.classes
+        );
       }
 
       if (iconClasses) {
-        temp.icon.classes = Object.keys(iconClasses || {}).reduce(
+        updatedTheme.icon.classes = Object.keys(iconClasses || {}).reduce(
           (acc, key) => ({
             ...acc,
             [key]: {
@@ -50,30 +65,40 @@ const useTheme = ({
               classes: cn(acc[key].classes, iconClasses[key].classes)
             }
           }),
-          temp.icon.classes
+          prevTheme.icon.classes
         );
       }
 
-      if (layoutClasses)
-        temp.layout.classes = cn(temp.layout.classes, layoutClasses);
+      if (layoutClasses) {
+        updatedTheme.layout.classes = cn(
+          prevTheme.layout.classes,
+          layoutClasses
+        );
+      }
 
-      if (messageClasses)
-        temp.message.classes = cn(temp.message.classes, messageClasses);
-      return temp;
-    });
+      if (messageClasses) {
+        updatedTheme.message.classes = cn(
+          prevTheme.message.classes,
+          messageClasses
+        );
+      }
+
+      return updatedTheme;
+    };
+
+    setCurrentTheme(handleUpdateTheme);
   }, [
     buttonClasses,
     containerClasses,
     iconClasses,
     layoutClasses,
-    messageClasses,
-    currentTheme
+    messageClasses
   ]);
 
   return { currentTheme, setCurrentTheme };
 };
 
-function filterClasses(values: string[], classString: string): string {
+export function filterClasses(values: string[], classString: string): string {
   // Map each direction to its opposite
   const opposites: Record<string, string> = {
     right: 'left',
@@ -94,5 +119,3 @@ function filterClasses(values: string[], classString: string): string {
 
   return classString.trim();
 }
-
-export default useTheme;
