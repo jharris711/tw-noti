@@ -7,7 +7,7 @@ interface Props {
   onClick?: () => void;
 }
 
-const ToastActionBtn = ({ theme, type, onClick }: Props) => {
+export function ToastActionBtn({ theme, type, onClick }: Props) {
   return (
     <button
       type='button'
@@ -19,6 +19,4 @@ const ToastActionBtn = ({ theme, type, onClick }: Props) => {
       <CloseIcon className='w-5 h-5' />
     </button>
   );
-};
-
-export default ToastActionBtn;
+}

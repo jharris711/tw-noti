@@ -1,2 +1,2 @@
-import ToastActionBtn from './ToastActionBtn';
+import { ToastActionBtn } from './ToastActionBtn';
 export default ToastActionBtn;
