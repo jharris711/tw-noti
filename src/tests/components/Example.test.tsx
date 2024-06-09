@@ -1,12 +1,34 @@
-import { describe, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, expect, test, vi } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import Example from '@/components/Example';
+
+const mockEnqueueToast = vi.fn();
+vi.mock('../../hooks/useToast', () => ({
+  useToast: () => ({
+    enqueueToast: mockEnqueueToast
+  })
+}));
 
 describe('should render properly', () => {
   test('should render the component', () => {
     render(<Example />);
+
     const component = screen.getByTestId('example-component');
+
     expect(component).toBeInTheDocument();
+  });
+
+  test('should call enqueueToast on button click', () => {
+    render(<Example />);
+
+    const button = screen.getByTestId('example-component-toast-trigger-button');
+
+    fireEvent.click(button);
+
+    expect(mockEnqueueToast).toHaveBeenCalledWith({
+      content: 'This is a notification',
+      type: 'info'
+    });
   });
 });
