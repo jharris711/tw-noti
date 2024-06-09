@@ -30,6 +30,16 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: 'src/setupTests.ts',
-    testTimeout: 10000
+    testTimeout: 10000,
+    coverage: {
+      provider: 'v8',
+      exclude: [
+        '.eslintrc.cjs',
+        'postcss.config.js',
+        'tailwind.config.js',
+        'src/main.tsx',
+        'src/lib/**'
+      ]
+    }
   }
 });
