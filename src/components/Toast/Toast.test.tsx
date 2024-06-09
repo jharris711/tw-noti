@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import Toast from '@/components/Toast';
+import { Toast } from './Toast';
 
 describe('should render properly', () => {
   test('should render the component', () => {

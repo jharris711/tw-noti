@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import Example from '@/components/Example';
+import { Example } from './Example';
 
 const mockEnqueueToast = vi.fn();
 vi.mock('../../hooks/useToast', () => ({
