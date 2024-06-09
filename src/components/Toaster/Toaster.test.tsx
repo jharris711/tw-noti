@@ -1,10 +1,11 @@
-// Toaster.test.tsx
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+
 import { ToastContext } from '../ToastContext/ToastContext';
 import { Toaster } from './Toaster';
-import { ToastContextProps } from '@/types/Toast';
+
 import { defaultTheme } from '@/theme/defaultTheme';
+import { ToastContextProps } from '@/types/Toast';
 
 const mockToast = {
   id: 1,

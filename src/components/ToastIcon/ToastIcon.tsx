@@ -17,7 +17,7 @@ export function ToastIcon({ theme, type }: Props) {
   const warning = type === 'warning';
 
   return (
-    <div className={theme.classes[type].classes}>
+    <div className={theme.classes[type].classes} data-testid='toast-icon'>
       {error ? (
         <CloseIcon className='w-5 h-5' />
       ) : info ? (
