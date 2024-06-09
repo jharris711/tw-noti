@@ -1,4 +1,4 @@
-import { Theme } from '../../types/Theme';
+import { Theme } from '@/types/Theme';
 
 interface Props extends React.PropsWithChildren {
   theme: Theme['container'];

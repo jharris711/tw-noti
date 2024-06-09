@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
-import ToastComponent from '../../components/Toast';
-import { Toast } from '../../types/Toast';
-import { useToast } from '../../hooks/useToast';
-import { defaultTheme } from '../../theme/defaultTheme';
+
+import ToastComponent from '@/components/Toast';
+import { useToast } from '@/hooks/useToast';
+import { Toast } from '@/types/Toast';
+import { defaultTheme } from '@/theme/defaultTheme';
+
 import ToastContainer from '../ToastContainer';
 
 // Sort the toasts array in descending order based on created-at time (toast.id)

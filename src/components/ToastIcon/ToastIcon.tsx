@@ -1,9 +1,9 @@
-import CheckMarkIcon from '../../svgIcons/CheckMarkIcon';
-import CloseIcon from '../../svgIcons/CloseIcon';
-import FireIcon from '../../svgIcons/FireIcon';
-import InfoCircleIcon from '../../svgIcons/InfoCircleIcon';
-import WarningIcon from '../../svgIcons/WarningIcon';
-import { Theme } from '../../types/Theme';
+import CheckMarkIcon from '@/svgIcons/CheckMarkIcon';
+import CloseIcon from '@/svgIcons/CloseIcon';
+import FireIcon from '@/svgIcons/FireIcon';
+import InfoCircleIcon from '@/svgIcons/InfoCircleIcon';
+import WarningIcon from '@/svgIcons/WarningIcon';
+import { Theme } from '@/types/Theme';
 
 interface Props {
   theme: Theme['icon'];

@@ -1,5 +1,5 @@
-import CloseIcon from '../../svgIcons/CloseIcon';
-import { Theme } from '../../types/Theme';
+import CloseIcon from '@/svgIcons/CloseIcon';
+import { Theme } from '@/types/Theme';
 
 interface Props {
   theme: Theme['button'];

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Theme } from '../../types/Theme';
+import { Theme } from '@/types/Theme';
 
 interface Props extends PropsWithChildren {
   theme: Theme['layout'];

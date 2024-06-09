@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { defaultTheme } from '../../theme/defaultTheme';
+
+import useTheme from '@/hooks/useTheme';
+import { defaultTheme } from '@/theme/defaultTheme';
+import { Toast, ToastContextProps } from '@/types/Toast';
+import { Theme } from '@/types/Theme';
+
 import Toaster from '../Toaster';
-import useTheme from '../../hooks/useTheme';
-import { Toast, ToastContextProps } from '../../types/Toast';
-import { Theme } from '../../types/Theme';
 
 export const ToastContext = React.createContext<ToastContextProps>({
   reverseStackOrder: false,

@@ -1,4 +1,4 @@
-import { useToast } from '../../hooks/useToast';
+import { useToast } from '@/hooks/useToast';
 
 export function Example() {
   const { enqueueToast } = useToast();
