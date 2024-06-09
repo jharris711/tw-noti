@@ -5,16 +5,17 @@ import ToastMessage from '../ToastMessage';
 import { useToast } from '../../hooks/useToast';
 
 interface ToastProps {
+  index: number;
   content: string;
   type: string;
   onClose?: () => void;
 }
 
-export function Toast({ content, type, onClose }: ToastProps) {
+export function Toast({ content, index, type, onClose }: ToastProps) {
   const { theme } = useToast();
 
   return (
-    <div data-testid='toast'>
+    <div data-testid={`toast-${index}`} role='toast'>
       <ToastLayout theme={theme.layout} type={type}>
         <ToastIcon theme={theme.icon} type={type} />
         <ToastMessage theme={theme.message}>{content}</ToastMessage>

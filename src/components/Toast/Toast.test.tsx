@@ -8,9 +8,9 @@ describe('should render properly', () => {
     const content = 'Test notification';
     const type = 'info';
 
-    render(<Toast content={content} type={type} />);
+    render(<Toast content={content} type={type} index={0} />);
 
-    const component = screen.getByTestId('toast');
+    const component = screen.getByTestId('toast-0');
 
     expect(component).toBeInTheDocument();
     expect(component).toHaveTextContent(content);
@@ -26,7 +26,7 @@ describe('should render properly', () => {
     const content = 'Test notification';
     const type = 'info';
     const onClose = vi.fn();
-    render(<Toast content={content} type={type} onClose={onClose} />);
+    render(<Toast content={content} type={type} onClose={onClose} index={0} />);
 
     const button = screen.getByRole('button');
     fireEvent.click(button);

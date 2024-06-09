@@ -11,13 +11,13 @@ const sortToasts = (toasts: Toast[]) => {
   return sorted.sort((a, b) => b.id - a.id);
 };
 
-const Toaster = () => {
+export function Toaster() {
   const { toasts, dequeueToast, reverseStackOrder } = useToast();
   const sortedToasts = useMemo(() => {
-    if (reverseStackOrder) {
-      return toasts;
+    if (!reverseStackOrder) {
+      return sortToasts(toasts);
     }
-    return sortToasts(toasts);
+    return toasts;
   }, [toasts, reverseStackOrder]);
 
   const handleToastClose = (id: number) => {
@@ -26,8 +26,9 @@ const Toaster = () => {
 
   return (
     <ToastContainer theme={defaultTheme.container}>
-      {sortedToasts.map((toast) => (
+      {sortedToasts.map((toast, index) => (
         <ToastComponent
+          index={index}
           key={toast.id}
           content={toast.content}
           type={toast.type}
@@ -36,6 +37,4 @@ const Toaster = () => {
       ))}
     </ToastContainer>
   );
-};
-
-export default Toaster;
+}

@@ -1,2 +1,2 @@
-import ToastLayout from './ToastLayout';
+import { ToastLayout } from './ToastLayout';
 export default ToastLayout;

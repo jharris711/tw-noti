@@ -1,2 +1,2 @@
-import Toaster from './Toaster';
+import { Toaster } from './Toaster';
 export default Toaster;

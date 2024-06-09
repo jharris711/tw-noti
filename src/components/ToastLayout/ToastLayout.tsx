@@ -6,12 +6,12 @@ interface Props extends PropsWithChildren {
   type: string;
 }
 
-const ToastLayout = ({ children, theme, type }: Props) => {
+export function ToastLayout({ children, theme, type }: Props) {
   return (
     <div id={`toast-${type}`} className={theme.classes} role='alert'>
       {children}
     </div>
   );
-};
+}
 
 export default ToastLayout;

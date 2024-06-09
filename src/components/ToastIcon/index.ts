@@ -1,2 +1,2 @@
-import ToastIcon from './ToastIcon';
+import { ToastIcon } from './ToastIcon';
 export default ToastIcon;

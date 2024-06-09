@@ -1,2 +1,2 @@
-import ToastMessage from './ToastMessage';
+import { ToastMessage } from './ToastMessage';
 export default ToastMessage;

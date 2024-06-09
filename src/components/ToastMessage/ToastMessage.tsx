@@ -4,8 +4,6 @@ interface Props extends React.PropsWithChildren {
   theme: Theme['message'];
 }
 
-const ToastMessage = ({ children, theme }: Props) => {
+export function ToastMessage({ children, theme }: Props) {
   return <div className={theme.classes}>{children}</div>;
-};
-
-export default ToastMessage;
+}

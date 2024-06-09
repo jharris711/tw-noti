@@ -15,7 +15,7 @@ export const ToastContext = React.createContext<ToastContextProps>({
   },
   dequeueToast: () => {
     console.log('');
-  },
+  }
 });
 
 interface ProviderProps {
@@ -32,7 +32,7 @@ interface ProviderProps {
   messageClasses?: Theme['message']['classes'];
 }
 
-const ToastProvider = ({
+export const ToastProvider = ({
   children,
   domRoot,
   maxToasts = 3,
@@ -43,7 +43,7 @@ const ToastProvider = ({
   containerClasses,
   iconClasses,
   layoutClasses,
-  messageClasses,
+  messageClasses
 }: ProviderProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [queue, setQueue] = useState<Toast[]>([]);
@@ -52,7 +52,7 @@ const ToastProvider = ({
     containerClasses,
     iconClasses,
     layoutClasses,
-    messageClasses,
+    messageClasses
   });
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const ToastProvider = ({
 
   const enqueueToast = ({
     content,
-    type,
+    type
   }: {
     content: string;
     type: string;
@@ -79,7 +79,7 @@ const ToastProvider = ({
     const newToast: Toast = {
       id: Date.now(),
       content,
-      type,
+      type
     };
 
     if (toasts.length >= maxToasts) {
@@ -104,7 +104,7 @@ const ToastProvider = ({
     theme: currentTheme,
     toasts,
     enqueueToast,
-    dequeueToast,
+    dequeueToast
   };
 
   return (
@@ -114,5 +114,3 @@ const ToastProvider = ({
     </ToastContext.Provider>
   );
 };
-
-export default ToastProvider;

@@ -10,7 +10,7 @@ interface Props {
   type: string;
 }
 
-const ToastIcon = ({ theme, type }: Props) => {
+export function ToastIcon({ theme, type }: Props) {
   const error = type === 'error';
   const info = type === 'info';
   const success = type === 'success';
@@ -32,6 +32,4 @@ const ToastIcon = ({ theme, type }: Props) => {
       <span className='sr-only'>{theme.classes[type].altText}</span>
     </div>
   );
-};
-
-export default ToastIcon;
+}

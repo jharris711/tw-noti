@@ -1,2 +1,2 @@
-import ToastProvider from './ToastContext';
+import { ToastProvider } from './ToastContext';
 export default ToastProvider;
