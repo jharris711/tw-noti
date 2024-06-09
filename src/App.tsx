@@ -1,5 +1,5 @@
 import ToastProvider from './components/ToastContext';
-import TestTheToast from './components/TestTheToast';
+import Example from './components/Example';
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
         messageClasses='dark:text-white font-extrabold'
         reverseStackOrder
       >
-        <TestTheToast />
+        <Example />
       </ToastProvider>
     </>
   );

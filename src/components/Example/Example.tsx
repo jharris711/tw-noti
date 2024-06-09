@@ -1,6 +1,6 @@
 import { useToast } from '../../hooks/useToast';
 
-const TestTheToast = () => {
+export function Example() {
   const { enqueueToast } = useToast();
 
   const handleClick = () => {
@@ -46,6 +46,4 @@ const TestTheToast = () => {
       </div>
     </section>
   );
-};
-
-export default TestTheToast;
+}
