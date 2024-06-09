@@ -27,16 +27,18 @@ export function Toaster() {
   };
 
   return (
-    <ToastContainer theme={defaultTheme.container}>
-      {sortedToasts.map((toast, index) => (
-        <ToastComponent
-          index={index}
-          key={toast.id}
-          content={toast.content}
-          type={toast.type}
-          onClose={() => handleToastClose(toast.id)}
-        />
-      ))}
-    </ToastContainer>
+    <div className='toaster'>
+      <ToastContainer theme={defaultTheme.container}>
+        {sortedToasts.map((toast, index) => (
+          <ToastComponent
+            index={index}
+            key={toast.id}
+            content={toast.content}
+            type={toast.type}
+            onClose={() => handleToastClose(toast.id)}
+          />
+        ))}
+      </ToastContainer>
+    </div>
   );
 }
