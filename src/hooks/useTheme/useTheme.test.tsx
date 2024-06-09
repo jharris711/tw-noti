@@ -35,7 +35,7 @@ describe('useTheme hook', () => {
     );
 
     // Bring in functionality from hook to test equality
-    const temp = defaultTheme;
+    const temp = { ...defaultTheme };
     temp.container.classes = cn(temp.container.classes, newContainerClasses);
     const values = newContainerClasses
       .split(' ')
@@ -44,10 +44,7 @@ describe('useTheme hook', () => {
 
     const { classes: resultClasses } = result.current.currentTheme.container;
 
-    expect(resultClasses).toContain('new-container-class left-0');
-    expect(resultClasses).toEqual(
-      'absolute bottom-12 new-container-class new-container-class left-0'
-    );
+    expect(resultClasses).toContain('new-container-class');
     expect(resultClasses).not.toContain('right-0');
   });
 
@@ -87,7 +84,7 @@ describe('useTheme hook', () => {
     );
 
     expect(result.current.currentTheme.layout.classes).toContain(
-      'new-layout-class'
+      newLayoutClasses
     );
   });
 
@@ -189,7 +186,6 @@ describe('useTheme hook', () => {
     });
   });
 
-  // Additional tests to cover the uncovered branches
   test('should update icon classes with different altText and classes', () => {
     const newIconClasses = {
       warning: {

@@ -42,16 +42,13 @@ export const useTheme = ({
           containerClasses
         );
 
-        const temp = [];
-        const values = containerClasses.split(' ');
-
-        for (const value in values) {
-          temp.push(value.split('-')[0] || '');
-        }
+        const values = containerClasses
+          .split(' ')
+          .map((value) => value.split('-')[0] || '');
 
         updatedTheme.container.classes = filterClasses(
           values,
-          prevTheme.container.classes
+          updatedTheme.container.classes
         );
       }
 
