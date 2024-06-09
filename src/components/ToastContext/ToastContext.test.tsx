@@ -79,6 +79,7 @@ describe('ToastProvider', () => {
     );
 
     const addButton = screen.getByText('Add Toast');
+
     act(() => {
       addButton.click();
       addButton.click();
