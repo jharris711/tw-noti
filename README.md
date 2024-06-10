@@ -244,3 +244,34 @@ interface Theme {
   ))}
 </ToastContainer>
 ```
+
+## Issues
+
+If you encounter any issues or bugs while using the tw-noti package, please feel free to open an issue ticket on our GitHub Issues page.
+
+When opening an issue, please provide as much detail as possible, including:
+
+- A clear and descriptive title.
+- A detailed description of the problem.
+- Steps to reproduce the issue.
+- Code snippets or screenshots that might help to understand and resolve the issue.
+- The version of tw-noti and any other relevant information about your environment.
+
+This will help us to address your issue more quickly and effectively.
+
+## Contributing
+
+We welcome contributions to the tw-noti package! If you would like to contribute, please follow these steps:
+
+- Fork the repository on GitHub.
+- Create a new branch with a descriptive name for your feature or fix (e.g., feature/add-new-toast-type or bugfix/fix-toast-timing).
+- Make your changes in your branch.
+- Ensure your code follows our coding standards and includes appropriate tests.
+- Commit your changes and push your branch to your forked repository.
+- Open a pull request to the main branch of the original repository.
+- In your pull request, please include:
+  - A clear and descriptive title.
+  - A detailed description of the changes you have made.
+  - Any relevant issues that are addressed by your changes.
+
+We will review your pull request as soon as possible and provide feedback. Thank you for contributing to tw-noti!
