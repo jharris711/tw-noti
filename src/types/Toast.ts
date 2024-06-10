@@ -13,3 +13,7 @@ export interface ToastContextProps {
   enqueueToast: ({ content, type }: { content: string; type: string }) => void;
   dequeueToast: (id: number) => void;
 }
+
+export interface TestTypeDelete {
+  name: string;
+}
