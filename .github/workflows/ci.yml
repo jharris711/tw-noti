@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -6,26 +6,23 @@ on:
       - main
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
-  ci:
+  commit-checks:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest]
         node: [18]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Setup node env
         uses: actions/setup-node@v2.1.2
         with:
           node-version: ${{ matrix.node }}
-
       - name: Cache node_modules
         uses: actions/cache@v2
         with:
@@ -33,12 +30,16 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-
       - name: Install dependencies
         run: npm ci
-
-      - name: Run code style check
+      - name: Run lint
         run: npm run lint
-
-      - name: Run tests
+      - name: Run Tests
         run: npm run test:staged
+      - name: Check for changes
+        run: git diff --exit-code
+      - name: Comment on PR if lint fails
+        if: ${{ failure() }}
+        run: |
+          echo "Lint checks failed. Please review and fix the issues."
+          exit 1
