@@ -6,7 +6,7 @@ on:
       - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   commit-checks:
@@ -36,10 +36,6 @@ jobs:
         run: npm run lint
       - name: Run Tests
         run: npm run test:staged
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Check for changes
         run: git diff --exit-code
       - name: Comment on PR if lint fails
@@ -47,3 +43,7 @@ jobs:
         run: |
           echo "Lint checks failed. Please review and fix the issues."
           exit 1
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
+import { renderHook } from '@testing-library/react';
 
 import ToastProvider from '@/components/ToastContext';
-import { renderHook } from '@testing-library/react';
 import { ToastContextProps } from '@/types/Toast';
 
 import { useToast } from './useToast';

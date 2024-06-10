@@ -4,7 +4,7 @@
 [![npm downloads](https://img.shields.io/npm/dw/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
 [![package license](https://img.shields.io/npm/l/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
 [![CI](https://github.com/jharris711/tw-noti/actions/workflows/ci.yml/badge.svg)](https://github.com/jharris711/tw-noti/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/jharris711/tw-noti/branch/master/graph/badge.svg)](https://codecov.io/gh/jharris711/tw-noti)
+[![codecov](https://codecov.io/gh/jharris711/tw-noti/graph/badge.svg?token=SD4STNUDEP)](https://codecov.io/gh/jharris711/tw-noti)
 
 # TailwindCSS Toast Notifications and Provider for React Applications
 
