@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/tw-noti.svg?label=version)](https://www.npmjs.com/package/tw-noti)
 [![npm downloads](https://img.shields.io/npm/dw/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
 [![package license](https://img.shields.io/npm/l/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/{owner}/{repo}/CI?label=build)
 
 # TailwindCSS Toast Notifications and Provider for React Applications
 
