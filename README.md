@@ -4,6 +4,7 @@
 [![npm downloads](https://img.shields.io/npm/dw/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
 [![package license](https://img.shields.io/npm/l/tw-noti.svg)](https://www.npmjs.com/package/tw-noti)
 [![CI](https://github.com/jharris711/tw-noti/actions/workflows/ci.yml/badge.svg)](https://github.com/jharris711/tw-noti/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/jharris711/tw-noti/branch/master/graph/badge.svg)](https://codecov.io/gh/jharris711/tw-noti)
 
 # TailwindCSS Toast Notifications and Provider for React Applications
 
@@ -175,7 +176,7 @@ To override the default styling, you can apply Tailwind CSS classes to the Toast
 <ToastProvider
   iconClasses={{
     info: { altText: 'Green Icon', classes: 'dark:bg-orange-500' },
-    error: { altText: 'Teal Icon', classes: 'dark:bg-teal-500' },
+    error: { altText: 'Teal Icon', classes: 'dark:bg-teal-500' }
   }}
 >
   <Child />
@@ -221,9 +222,9 @@ interface Theme {
     classes: {
       [key: string]: {
         altText: string,
-        classes: string,
-      },
-    },
+        classes: string
+      }
+    }
   };
   layout: { classes: string };
   message: { classes: string };
